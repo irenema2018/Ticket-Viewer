@@ -1,1 +1,14 @@
-<p>Tickets: </p>
+
+
+<% @tickets.each do |ticket| %>
+  <div>
+    <%= ticket['id'] %>
+    <%= ticket['type'] %>
+    <%= ticket['subject'] %>
+  
+  </div>
+<% end %>
+
+<a href="/tickets/prev_page">Prev</a>
+
+<a href="/tickets/next_page">Next</a>
