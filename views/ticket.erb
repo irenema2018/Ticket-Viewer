@@ -1,0 +1,10 @@
+
+
+<p>Subject: <%= @ticket['subject']%></p>
+<p>Status: <%= @ticket['status']%></p>
+<p>Created Date: <%=Time.parse(@ticket['created_at']).strftime("%F %T")%></p>
+<p>Type: <%= @ticket['type']%></p>
+<p>Priority: <%= @ticket['priority']%></p>
+<p>Description: <%= @ticket['description']%></p>
+
+ 

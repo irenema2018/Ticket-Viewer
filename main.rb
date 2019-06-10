@@ -17,7 +17,7 @@ post '/tickets' do
   session[:password]=params[:password]
 
   auth = {:username => session[:email], :password => session[:password]}
-  response = HTTParty.get("https://#{session[:accountname]}.zendesk.com/api/v2/tickets.json?per_page=25", 
+  response = HTTParty.get("https://#{session[:accountname]}.zendesk.com/api/v2/tickets.json?per_page=25&include=users", 
                           :basic_auth => auth)
 
   @tickets = response['tickets']
@@ -25,6 +25,13 @@ post '/tickets' do
   session[:next_page_url] = response['next_page']
   session[:prev_page_url] = response['previous_page']
 
+  @users = {}
+  response['users'].each do |user|
+    id = user['id']
+    name = user['name']
+    @users[id] = name
+ 
+  end
   erb :tickets
 end
 
@@ -56,6 +63,17 @@ get '/tickets/prev_page' do
   session[:prev_page_url] = response['previous_page']
                    
   erb :tickets
+end
+
+get '/ticket/:id' do
+
+  auth = {:username => session[:email], :password => session[:password]}
+  response = HTTParty.get("https://#{session[:accountname]}.zendesk.com/api/v2/tickets/#{params[:id]}.json", 
+                          :basic_auth => auth)
+
+  @ticket = response['ticket']
+
+  erb :ticket
 end
 
 

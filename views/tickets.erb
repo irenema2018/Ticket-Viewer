@@ -2,10 +2,15 @@
 
 <% @tickets.each do |ticket| %>
   <div>
-    <%= ticket['id'] %>
-    <%= ticket['type'] %>
-    <%= ticket['subject'] %>
-  
+    <a href="/ticket/<%= ticket['id'] %>">
+      <%= ticket['id'] %> 
+      <%= ticket['subject'] %>
+      <%= ticket['status'] %>
+      <%= ticket['type'] %>
+      <%= @users[ticket['requester_id']] %>
+      <%= @users[ticket['assignee_id']] %>
+
+    </a>
   </div>
 <% end %>
 

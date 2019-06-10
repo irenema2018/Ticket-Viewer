@@ -1,16 +1,16 @@
-<form action="/tickets" method="post">
-
-  <label for="account">Account Name</label>
-  <input type="text" name="accountname">
-
-  <label for="email">Email</label>
-  <input type="text" name="email">
-
-  <label for="">Password</label>
-  <input type="password" name="password">
-
-  <button>Get Tickets</button>
-
-
+<form class="index-form" action="/tickets" method="post">
+  <div>
+    <label for="accountname">Zendesk Account Name</label>
+    <input type="text" placeholder="API Subdomain" name="accountname">
+  </div>
+  <div>
+    <label for="email">Email</label>
+    <input type="text" name="email">
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input type="password" name="password">
+  </div>
+  <button id="get-ticket-btn">Get Tickets</button>
 </form>
 
