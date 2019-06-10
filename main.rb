@@ -10,9 +10,14 @@ get '/' do
   erb :index
 end
 
-get '/tickets' do
-  auth = {:username => "irene.ma@outlook.com", :password => "temp"}
-  response = HTTParty.get("https://irene.zendesk.com/api/v2/tickets.json?per_page=25", 
+post '/tickets' do
+
+  session[:accountname]=params[:accountname]
+  session[:email]=params[:email]
+  session[:password]=params[:password]
+
+  auth = {:username => session[:email], :password => session[:password]}
+  response = HTTParty.get("https://#{session[:accountname]}.zendesk.com/api/v2/tickets.json?per_page=25", 
                           :basic_auth => auth)
 
   @tickets = response['tickets']
@@ -27,7 +32,7 @@ get '/tickets/next_page' do
 
   next_page_url = session[:next_page_url]
 
-  auth = {:username => "irene.ma@outlook.com", :password => "temp"}
+  auth = {:username => session[:email], :password => session[:password]}
   response = HTTParty.get(next_page_url, 
                           :basic_auth => auth)
 
@@ -42,7 +47,7 @@ get '/tickets/prev_page' do
 
   prev_page_url = session[:prev_page_url]
 
-  auth = {:username => "irene.ma@outlook.com", :password => "temp"}
+  auth = {:username => session[:email], :password => session[:password]}
   response = HTTParty.get(prev_page_url, 
                           :basic_auth => auth)
 
