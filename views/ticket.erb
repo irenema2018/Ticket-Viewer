@@ -14,8 +14,8 @@
     <div class="single-ticket-content"><%= @ticket['status']%></div>
     <div class="single-ticket-content">
       <% if !@ticket['priority'] %>
-        <div>Null</div>
-      <% elsif %>
+        <div>-</div>
+      <% else %>
         <%= @ticket['priority']%>
       <% end %>
     </div>

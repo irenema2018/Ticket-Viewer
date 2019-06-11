@@ -14,6 +14,8 @@ body {
   font-weight: bold;
   color: #2F3941;
   font-size: 1rem;
+  padding: 0.3rem 0.8rem;
+  background-color: lightgray;
 }
 
 .index-form {
@@ -87,18 +89,7 @@ body {
   text-align: center;
 }
 
-#prev-page-link {
-  margin-left: 1rem;
-  margin-bottom: 3rem;
-  margin-top: 2rem;
-  text-decoration: none;
-  color: #2F3941;
-  font-weight: bold;
-  padding: 0.3rem 0.8rem;
-  background-color: lightgray;
-}
-
-#next-page-link {
+.page-link {
   margin-left: 1rem;
   margin-bottom: 3rem;
   margin-top: 2rem;
@@ -134,5 +125,10 @@ body {
 .single-ticket-content {
   flex-direction: column;
   margin-bottom: 1rem;
-  
+}
+
+.error-message {
+  margin-left: 1rem;
+  font-size: 0.8rem;
+  color: red;
 }

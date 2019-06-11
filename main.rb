@@ -1,6 +1,5 @@
      
 require "sinatra"
-require "pry"
 require "sinatra/reloader"
 require "httparty"
 
@@ -24,12 +23,12 @@ post '/tickets' do
   session[:email]       = params[:email]
   session[:password]    = params[:password]
 
-  url = "https://#{session[:accountname]}.zandesk.com/api/v2/tickets.json?per_page=25&include=users"
+  url = "https://#{session[:accountname]}.zendesk.com/api/v2/tickets.json?per_page=25&include=users"
   auth = {:username => session[:email], :password => session[:password]}
   response = HTTParty.get(url,:basic_auth => auth)
 
   if response.code != 200
-    session[:error_message] = 'Error: 200 Something was wrong with the Zendesk API.'
+    session[:error_message] = 'Something was wrong. The Zendesk API may not be available or your credentials may not be entered correctly.'
     redirect '/error'
   end
 
@@ -58,7 +57,7 @@ get '/tickets/next_page' do
   response = HTTParty.get(next_page_url, :basic_auth => auth)
 
   if response.code != 200
-    session[:error_message] = 'Something was wrong with the Zendesk API.'
+    session[:error_message] = 'Something was wrong. The Zendesk API may not be available or your credentials may not be entered correctly.'
     redirect '/error'
   end                          
 
@@ -87,7 +86,7 @@ get '/tickets/prev_page' do
   response = HTTParty.get(prev_page_url, :basic_auth => auth)
 
   if response.code != 200
-    session[:error_message] = 'Something was wrong with the Zendesk API.'
+    session[:error_message] = 'Something was wrong. The Zendesk API may not be available or your credentials may not be entered correctly.'
     redirect '/error'
   end    
 
