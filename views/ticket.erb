@@ -4,22 +4,35 @@
   <div class="single-ticket-title-column">
     <div class="single-ticket-title">Subject: </div>
     <div class="single-ticket-title">Status: </div>
-    <div class="single-ticket-title">Priority: </div>
     <div class="single-ticket-title">Created Date:  </div>
+    <div class="single-ticket-title">Requester:  </div>
+    <div class="single-ticket-title">Assignee:  </div>
+    <div class="single-ticket-title">Priority: </div>
+    <div class="single-ticket-title">Type: </div>
     <div class="single-ticket-title">Description:  </div>
   </div>
 
   <div class="single-ticket-content-column">
     <div class="single-ticket-content"><%= @ticket['subject']%></div>
     <div class="single-ticket-content"><%= @ticket['status']%></div>
+    <div class="single-ticket-content"><%=Time.parse(@ticket['created_at']).strftime("%F %T")%></div>
+    <div class="single-ticket-content"><%= @users[@ticket['requester_id']] %></div>
+    <div class="single-ticket-content"><%= @users[@ticket['assignee_id']] %></div>
     <div class="single-ticket-content">
       <% if !@ticket['priority'] %>
-        <div>-</div>
+        <span>-</span>
       <% else %>
         <%= @ticket['priority']%>
       <% end %>
     </div>
-    <div class="single-ticket-content"><%=Time.parse(@ticket['created_at']).strftime("%F %T")%></div>
+     <div class="single-ticket-content">
+      <% if !@ticket['type'] %>
+        <span>-</span>
+      <% else %>
+        <%= @ticket['type']%>
+      <% end %>
+    </div>
+  
     <div class="single-ticket-content"><%= @ticket['description']%></div>
   </div>
 

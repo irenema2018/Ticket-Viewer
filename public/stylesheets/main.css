@@ -15,7 +15,8 @@ body {
   color: #2F3941;
   font-size: 1rem;
   padding: 0.3rem 0.8rem;
-  background-color: lightgray;
+  background-color: rgb(216, 220, 222);
+  border-radius: 5px;
 }
 
 .index-form {
@@ -54,36 +55,30 @@ body {
 }
 
 .id-column {
-  display: flex;
   width: 5%;
 }
 
 .subject-column {
-  display: flex;
   width: 30%;
 }
 .status-column {
-  display: flex;
   width: 8%;
 }
 
 .type-column {
-  display: flex;
   width: 8%;
 }
 
 .requester-column {
-  display: flex;
   width: 12%;
 }
 
 .assignee-column {
-  display: flex;
   width: 12%;
 }
 
 .tickets-page-links {
-  width:80%;
+  width: 60%;
   height: 3rem;
   margin: 1rem 0;
   text-align: center;
@@ -97,7 +92,8 @@ body {
   color: #2F3941;
   font-weight: bold;
   padding: 0.3rem 0.8rem;
-  background-color: lightgray;
+  background-color:rgb(216, 220, 222);
+  border-radius: 5px;
 }
 
 .single-ticket-container {

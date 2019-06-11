@@ -14,7 +14,7 @@ get '/error' do
 end
 
 get '/tickets' do
-  session[:error_message] = 'Something was wrong. Please go back to home and try again!' 
+  session[:error_message] = 'Something was wrong. Please go back to Home and try again!' 
   redirect '/error'
 end
 
@@ -105,16 +105,28 @@ get '/tickets/prev_page' do
 end
 
 get '/ticket/:id' do
-  url = "https://#{session[:accountname]}.zendesk.com/api/v2/tickets/#{params[:id]}.json"
+  if !session[:accountname]
+    session[:error_message] = "Unable to get ticket ##{params[:id]}."
+    redirect '/error'
+  end
+
+  url = "https://#{session[:accountname]}.zendesk.com/api/v2/tickets/#{params[:id]}.json?include=users"
   auth = {:username => session[:email], :password => session[:password]}
   response = HTTParty.get(url, :basic_auth => auth)
 
   if response.code != 200
-    session[:error_message] = "Can not get ticket ##{params[:id]}."
+    session[:error_message] = "Unable to get ticket ##{params[:id]}."
     redirect '/error'
   end       
                     
   @ticket = response['ticket']
+  @users = {}
+  response['users'].each do |user|
+    id = user['id']
+    name = user['name']
+    @users[id] = name
+  end
+
   erb :ticket
 end
 

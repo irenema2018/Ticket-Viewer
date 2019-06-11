@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/reporters'
 require 'rack/test'
+require 'io/console'
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new()
 
@@ -13,8 +14,60 @@ class MainTest < Minitest::Test
     Sinatra::Application 
   end
   
-  def test_get
+  def test_index
     get '/'
     assert last_response.ok?
   end
+
+  def test_ticket_list 
+    print 'Enter Zendesk account name: '
+    accountname = gets.chomp
+
+    print 'Enter email: '
+    email = gets.chomp
+
+    print 'Enter password: '
+    password = STDIN.noecho(&:gets).chomp
+    # password = gets.chomp
+    puts
+
+    credentials = {
+      :accountname => accountname,
+      :email => email,
+      :password => password
+    }
+
+    post '/tickets', credentials 
+
+    assert last_response.ok?
+    assert last_response.body.include?('Assignee')
+    assert !last_response.body.include?('Prev')
+    assert last_response.body.include?('Next')
+
+    get '/tickets/next_page' # Go to the second page
+
+    assert last_response.ok?
+    assert last_response.body.include?('Assignee')
+    assert last_response.body.include?('Prev')
+    assert last_response.body.include?('Next')
+
+    get '/tickets/prev_page' # Go to the first page
+
+    assert last_response.ok?
+    assert last_response.body.include?('Assignee')
+    assert !last_response.body.include?('Prev')
+    assert last_response.body.include?('Next')
+
+    get '/ticket/1'
+
+    assert last_response.ok?
+    assert last_response.body.include?('Created Date')
+    assert last_response.body.include?('Description')
+    assert !last_response.body.include?('Prev')
+    assert !last_response.body.include?('Next')
+
+
+  end
+
+  
 end
