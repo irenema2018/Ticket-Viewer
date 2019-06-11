@@ -1,10 +1,25 @@
 
-
-<p>Subject: <%= @ticket['subject']%></p>
-<p>Status: <%= @ticket['status']%></p>
-<p>Created Date: <%=Time.parse(@ticket['created_at']).strftime("%F %T")%></p>
-<p>Type: <%= @ticket['type']%></p>
-<p>Priority: <%= @ticket['priority']%></p>
-<p>Description: <%= @ticket['description']%></p>
-
+<div class="single-ticket-container">
  
+  <div class="single-ticket-title-column">
+    <div class="single-ticket-title">Subject: </div>
+    <div class="single-ticket-title">Status: </div>
+    <div class="single-ticket-title">Priority: </div>
+    <div class="single-ticket-title">Created Date:  </div>
+    <div class="single-ticket-title">Description:  </div>
+  </div>
+
+  <div class="single-ticket-content-column">
+    <div class="single-ticket-content"><%= @ticket['subject']%></div>
+    <div class="single-ticket-content"><%= @ticket['status']%></div>
+    <div class="single-ticket-content">
+      <% if !@ticket['priority'] %>
+        <div>Null</div>
+      <% elsif %>
+        <%= @ticket['priority']%>
+      <% end %>
+    </div>
+    <div class="single-ticket-content"><%=Time.parse(@ticket['created_at']).strftime("%F %T")%></div>
+    <div class="single-ticket-content"><%= @ticket['description']%></div>
+  </div>
+

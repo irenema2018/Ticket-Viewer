@@ -1,19 +1,138 @@
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: #2F3941;
+}
+
 #header {
   margin-left: 1rem;
 }
 
-#home {
+#home-link {
   margin-bottom: 1.5rem;
-  margin-left:1rem ;
+  margin-left: 1rem;
+  text-decoration: none;
+  font-weight: bold;
+  color: #2F3941;
+  font-size: 1rem;
 }
 
 .index-form {
   width: 15%;
-  margin-left:1rem ;
+  margin-left: 1rem ;
   margin-top: 1rem;
+  font-size: 0.8rem;
+}
+
+.input {
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
 }
 
 #get-ticket-btn {
-  margin-top: 1rem;
+  margin-top: 0.7rem;
+  color: #2F3941;
 }
 
+.tickets-title-bar {
+  display: flex;
+  margin-left: 1rem;
+  font-weight: bold;
+  color: #2F3941;
+  font-size: 0.8rem;
+  width: 80%;
+}
+
+.tickets-container {
+  display: flex;
+  margin-left: 1rem;
+  text-decoration: none;
+  color: #2F3941;
+  font-size: 0.8rem;
+  width: 80%;
+}
+
+.id-column {
+  display: flex;
+  width: 5%;
+}
+
+.subject-column {
+  display: flex;
+  width: 30%;
+}
+.status-column {
+  display: flex;
+  width: 8%;
+}
+
+.type-column {
+  display: flex;
+  width: 8%;
+}
+
+.requester-column {
+  display: flex;
+  width: 12%;
+}
+
+.assignee-column {
+  display: flex;
+  width: 12%;
+}
+
+.tickets-page-links {
+  width:80%;
+  height: 3rem;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+#prev-page-link {
+  margin-left: 1rem;
+  margin-bottom: 3rem;
+  margin-top: 2rem;
+  text-decoration: none;
+  color: #2F3941;
+  font-weight: bold;
+  padding: 0.3rem 0.8rem;
+  background-color: lightgray;
+}
+
+#next-page-link {
+  margin-left: 1rem;
+  margin-bottom: 3rem;
+  margin-top: 2rem;
+  text-decoration: none;
+  color: #2F3941;
+  font-weight: bold;
+  padding: 0.3rem 0.8rem;
+  background-color: lightgray;
+}
+
+.single-ticket-container {
+  display: flex;
+  flex-direction: row;
+  margin-left: 1rem;
+  font-size: 0.8rem;
+  width: 80%;
+}
+
+.single-ticket-title-column {
+  width: 18%;
+}
+
+.single-ticket-title {
+  flex-direction: column;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.single-ticket-content-column {
+  width: 55%;
+}
+
+.single-ticket-content {
+  flex-direction: column;
+  margin-bottom: 1rem;
+  
+}

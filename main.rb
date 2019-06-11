@@ -20,22 +20,20 @@ get '/tickets' do
 end
 
 post '/tickets' do
-
   session[:accountname] = params[:accountname]
   session[:email]       = params[:email]
   session[:password]    = params[:password]
 
+  url = "https://#{session[:accountname]}.zandesk.com/api/v2/tickets.json?per_page=25&include=users"
   auth = {:username => session[:email], :password => session[:password]}
-  response = HTTParty.get("https://#{session[:accountname]}.zendesk.com/api/v2/tickets.json?per_page=25&include=users", 
-                          :basic_auth => auth)
+  response = HTTParty.get(url,:basic_auth => auth)
 
   if response.code != 200
-    session[:error_message] = 'Something was wrong with the Zendesk API.'
+    session[:error_message] = 'Error: 200 Something was wrong with the Zendesk API.'
     redirect '/error'
   end
 
   @tickets = response['tickets']
-
   session[:next_page_url] = response['next_page']
   session[:prev_page_url] = response['previous_page']
 
@@ -50,17 +48,14 @@ post '/tickets' do
 end
 
 get '/tickets/next_page' do
-
   if !session[:next_page_url]
     session[:error_message] = 'There is no next page.'
     redirect '/error'
   end
 
   next_page_url = session[:next_page_url]
-
   auth = {:username => session[:email], :password => session[:password]}
-  response = HTTParty.get(next_page_url, 
-                          :basic_auth => auth)
+  response = HTTParty.get(next_page_url, :basic_auth => auth)
 
   if response.code != 200
     session[:error_message] = 'Something was wrong with the Zendesk API.'
@@ -82,17 +77,14 @@ get '/tickets/next_page' do
 end
 
 get '/tickets/prev_page' do
-
   if !session[:prev_page_url]
     session[:error_message] = 'There is no previous page.'
     redirect '/error'
   end
 
   prev_page_url = session[:prev_page_url]
-
   auth = {:username => session[:email], :password => session[:password]}
-  response = HTTParty.get(prev_page_url, 
-                          :basic_auth => auth)
+  response = HTTParty.get(prev_page_url, :basic_auth => auth)
 
   if response.code != 200
     session[:error_message] = 'Something was wrong with the Zendesk API.'
@@ -114,10 +106,9 @@ get '/tickets/prev_page' do
 end
 
 get '/ticket/:id' do
-
+  url = "https://#{session[:accountname]}.zendesk.com/api/v2/tickets/#{params[:id]}.json"
   auth = {:username => session[:email], :password => session[:password]}
-  response = HTTParty.get("https://#{session[:accountname]}.zendesk.com/api/v2/tickets/#{params[:id]}.json", 
-                          :basic_auth => auth)
+  response = HTTParty.get(url, :basic_auth => auth)
 
   if response.code != 200
     session[:error_message] = "Can not get ticket ##{params[:id]}."
