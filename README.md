@@ -1,12 +1,12 @@
 # Ticket-Viewer
 
 ## Introduction
-This app uses sinatra in Ruby for viewing Zendesk tickets via API calls. You can use your own Zendesk account to access the app. Zendesk fonts and colours are used in the app to make it a bit more user friendly.
+This app uses sinatra in Ruby (v2.6.2) for viewing Zendesk tickets via API calls. You can use your own Zendesk account to access the app. Zendesk fonts and colours are used in the app to make it a bit more user friendly.
 
 ## Installation
-1. [Download](https://www.ruby-lang.org/en/downloads/) and install Ruby if you don't have it on your machine.
+1. [Download](https://www.ruby-lang.org/en/downloads/) and install Ruby if you don't have it on your machine. Using the most recent stable release (v2.6.3) should be fine.
 
-2. Install [Bundler](https://bundler.io/). It is used to manage the Ruby gems.
+2. Install [Bundler](https://bundler.io/) if you don't have it already. It is used to manage the Ruby gems.
 ```
 gem install bundler
 ```
