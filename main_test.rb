@@ -27,8 +27,7 @@ class MainTest < Minitest::Test
     email = gets.chomp
 
     print 'Enter password: '
-    password = STDIN.noecho(&:gets).chomp
-    # password = gets.chomp
+    password = STDIN.noecho(&:gets).chomp # This will not show the password
     puts
 
     credentials = {
@@ -55,7 +54,7 @@ class MainTest < Minitest::Test
 
     assert last_response.ok?
     assert last_response.body.include?('Assignee')
-    assert !last_response.body.include?('Prev')
+    assert !last_response.body.include?('Prev') # No Prev on the first page
     assert last_response.body.include?('Next')
 
     get '/ticket/1'
@@ -63,11 +62,7 @@ class MainTest < Minitest::Test
     assert last_response.ok?
     assert last_response.body.include?('Created Date')
     assert last_response.body.include?('Description')
-    assert !last_response.body.include?('Prev')
-    assert !last_response.body.include?('Next')
-
-
-  end
-
-  
+    assert !last_response.body.include?('Prev') # Do not expect to see Prev
+    assert !last_response.body.include?('Next') # Do not expect to see Next
+  end  
 end

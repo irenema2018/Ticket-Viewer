@@ -19,6 +19,14 @@ get '/tickets' do
 end
 
 post '/tickets' do
+  # According to https://www.zendesk.com/register/free-trial/#subdomain
+  if params[:accountname].length < 3 || # Domain must be at least 3 characters.
+     params[:accountname].match(/[^0-9a-z-]/) # Symbols except dash(-) are not allowed.
+      
+    session[:error_message] = 'Something was wrong with your account name. Please go back to Home and try again!'
+    redirect '/error'
+  end
+
   session[:accountname] = params[:accountname]
   session[:email]       = params[:email]
   session[:password]    = params[:password]
