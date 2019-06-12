@@ -32,22 +32,21 @@ bundle exec ruby main.rb
 The command will install everything found in Gemfile.lock and run the file main.rb for you. Once the web server is started, open a browser such as Chrome and go to http://localhost:4567/
 
 ## Usage
-1. You will see the index page. 
-2. Enter your account information for Zendesk Account Name, Email and Password. 
-3. Click on the *Get Tickets* button and it will lead you to the tickets page.
-4. Each tickets page displays 25 tickets showing 6 fields: ID, Subject, Status, Type, Requester and Assignee. 
-5. You can use the *Prev* and *Next* button to access more pages.
-6. The first page does not show the *Prev* button and the last page does not show the *Next* button. 
-7. Click on a ticket in the list to go to the individual ticket view.
-8. Use the *Home* link at the top of the pages to go back to home and try a different Zendesk account.
+1. On the home page, enter your Zendesk account information: Zendesk Account Name (subdomain), Email and Password. 
+2. Click on the *Get Tickets* button and it will lead you to the tickets page.
+3. Each tickets page displays 25 tickets showing 6 fields: ID, Subject, Status, Type, Requester and Assignee. 
+4. You can use the *Prev* and *Next* buttons to access more pages.
+5. The first page does not show the *Prev* button and the last page does not show the *Next* button. 
+6. Click on a ticket in the list to go to the individual ticket view.
+7. Use the *Home* link at the top of the pages to go back to home and try a different Zendesk account.
 
 ## Error handling
-1. The three input boxes are designed as required fields.
-2. When the API is unavailable, it will lead to the error page with a friendly message.
+1. The three input boxes on the home page are designed as required fields.
+2. If the Zendesk API is unavailable, the app will display a friendly message.
 3. All errors will be redirected to the error page.
 
 ## Testing
-In the terminal, run the command as below:
+In Terminal, run the command as below:
 ```
 ruby main_test.rb
 ```
