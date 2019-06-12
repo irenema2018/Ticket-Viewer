@@ -1,43 +1,90 @@
 # Ticket-Viewer
 
 ## Introduction
-This app uses sinatra in Ruby to view tickets from API calls. You can use your own Zendesk email and password to access the app. The look and feel is frienldy by using Zendesk fonts and color.
+This app uses sinatra in Ruby for viewing Zendesk tickets via API calls. You can use your own Zendesk account to access the app. Zendesk fonts and colours are used in the app to make it a bit more user friendly.
 
-## Installation instructions
-For the first time, run the command in terminal as below 
+## Installation
+1. [Download](https://www.ruby-lang.org/en/downloads/) and install Ruby if you don't have it on your machine.
+
+2. Install [Bundler](https://bundler.io/). It is used to manage the Ruby gems.
+```
+gem install bundler
+```
+
+## How to run the app
+1. Clone the repository
+
+```
+git clone https://github.com/irenema2018/Ticket-Viewer.git
+```
+
+2. Move into the app directory
+
+```
+cd Ticket-Viewer
+```
+
+3. Run the command as below:
+
 ```
 bundle exec ruby main.rb
 ```
+The command will install everything found in Gemfile.lock and run the file main.rb for you. Once the web server is started, open a browser such as Chrome and go to http://localhost:4567/
 
-The command will install everything in Gemfile.lock and run the file main.rb for you. Go to your browser and a tab has opened for you.
-### describe gemfile later
-
-## Usage instructions
-1. Go to the tab and you will see the index page. 
-2. Type your own information into 3 input boxes, Zendesk Account Name, Email and Password. After clicking the Get Tickets 
-   button, it will lead you to the tickets page.
-3. Each tickets page displays 25 tickets with 6 titles that are ID, Subject, Status, Type, Requester and Assignee. 
-   Clicking the Next or the Prev button can access to the next page or the previous page. 
-   The first page has no Prev button and the last page has no Next button. 
-   The contents of each ticket is designed as links. It will lead you to the page of an individual ticket.
-4. On the page of an individual ticket, it displays more details about the ticket.
-5. There is a Home link at the top of all the pages and it can access to the index / log in page.
+## Usage
+1. You will see the index page. 
+2. Enter your account information for Zendesk Account Name, Email and Password. 
+3. Click on the *Get Tickets* button and it will lead you to the tickets page.
+4. Each tickets page displays 25 tickets showing 6 fields: ID, Subject, Status, Type, Requester and Assignee. 
+5. You can use the *Prev* and *Next* button to access more pages.
+6. The first page does not show the *Prev* button and the last page does not show the *Next* button. 
+7. Click on a ticket in the list to go to the individual ticket view.
+8. Use the *Home* link at the top of the pages to go back to home and try a different Zendesk account.
 
 ## Error handling
-
-1. Three input boxes are desiged as required fields.
-2. When API is unavailable, it will lead to the error page with a friendly message.
-3. 
+1. The three input boxes are designed as required fields.
+2. When the API is unavailable, it will lead to the error page with a friendly message.
+3. All errors will be redirected to the error page.
 
 ## Testing
-In terminal, use the command as below. It will run the test automatically. 
+In the terminal, run the command as below:
 ```
 ruby main_test.rb
 ```
-code ~/.bash_profile  store password in ENV
+Please note - You'll need a valid Zendesk account in order to run the tests.
 
-## Things can be improved
-1. In main.rb, the controllers of the tickets list and the individual ticket have repetition.
-
+## Things that can be improved
+1. In main.rb, the controllers have code repetition that can be moved into a function.
+2. Tried very hard not to have my password visible in the code. Users are asked to enter their Zendesk account details. The same information is also required when running the tests. However, tests should be automatic and not require user input. There may be better ways of dealing with this problem, such as storing passwords in ENV or have a proper login/logout feature added.
+3. Http is used but should really be using https to make the app more secure.
 
 ## References
+Below are the list of online resources used for building the app:
+
+**Ruby**
+
+[Usage of integers as hash keys](https://stackoverflow.com/questions/7694317/usage-of-integers-as-hash-keys)
+
+[How Rails Sessions Work](https://www.justinweiss.com/articles/how-rails-sessions-work/)
+
+[SINATRA::RELOADER](http://sinatrarb.com/contrib/reloader)
+
+**API**
+
+[https://developer.zendesk.com/rest_api/docs/support/tickets#list-tickets](https://developer.zendesk.com/rest_api/docs/support/tickets#list-tickets)
+
+[https://developer.zendesk.com/rest_api/docs/support/tickets#show-ticket](https://developer.zendesk.com/rest_api/docs/support/tickets#show-ticket)
+
+[https://developer.zendesk.com/rest_api/docs/support/introduction#pagination](https://developer.zendesk.com/rest_api/docs/support/introduction#pagination)
+
+[https://developer.zendesk.com/rest_api/docs/support/side_loading](https://developer.zendesk.com/rest_api/docs/support/side_loading)
+
+[https://github.com/jnunemaker/httparty](https://github.com/jnunemaker/httparty)
+
+**Sinatra Testing**
+
+[TESTING SINATRA WITH RACK::TEST](http://sinatrarb.com/testing.html)
+
+[Minitest](http://recipes.sinatrarb.com/p/testing/minitest?)
+
+[How to hide password input from terminal in ruby script](https://stackoverflow.com/questions/2338889/how-to-hide-password-input-from-terminal-in-ruby-script)
