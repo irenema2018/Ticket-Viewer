@@ -29,7 +29,7 @@ cd Ticket-Viewer
 ```
 bundle exec ruby main.rb
 ```
-The command will install everything found in Gemfile.lock and run the file main.rb for you. Once the web server is started, open a browser such as Chrome and go to http://localhost:4567/
+The command executes `ruby main.rb`, making all gems specified in the Gemfile available to `require` in Ruby programs. Once the web server is started, open a browser such as Chrome and go to http://localhost:4567/
 
 ## Usage
 1. On the home page, enter your Zendesk account information: Zendesk Account Name (subdomain), Email and Password. 
