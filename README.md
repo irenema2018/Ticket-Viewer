@@ -27,9 +27,16 @@ cd Ticket-Viewer
 3. Run the command as below:
 
 ```
-bundle exec ruby main.rb
+bundle install
 ```
-The command executes `ruby main.rb`, making all gems specified in the Gemfile available to `require` in Ruby programs. Once the web server is started, open a browser such as Chrome and go to http://localhost:4567/
+
+4. Run the app
+
+```
+ruby main.rb
+```
+
+5. Open a browser such as Chrome and go to http://localhost:4567/
 
 ## Usage
 1. On the home page, enter your Zendesk account information: Zendesk Account Name (subdomain), Email and Password. 
