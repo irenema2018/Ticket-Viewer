@@ -57,6 +57,7 @@ Please note - You'll need a valid Zendesk account in order to run the tests.
 2. Tried very hard not to have my password visible in the code. Users are asked to enter their Zendesk account details. The same information is also required when running the tests. However, tests should be automatic and not require user input. There may be better ways of dealing with this problem, such as storing passwords in ENV or have a proper login/logout feature added.
 3. Http is used but should really be using https to make the app more secure.
 4. The routes `/tickets/next_page` and `/tickets/prev_page` can be changed to `/tickets/:page_id` in order to reduce redundant code.
+5. The tests only cater for accounts with more than 25 tickets. Additional tests are required for testing accounts that don't require pagination.
 
 ## References
 Below are the list of online resources used for building the app:
